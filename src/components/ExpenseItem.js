@@ -2,9 +2,11 @@ import React from 'react'
 import {MdEdit, MdDelete} from 'react-icons/md'
 // {expense:{id,charge,amount}}
  
-const ExpenseItem = ({expense}) => {
+// App.js is the container that will set the values for {expense}
+const ExpenseItem = ({expense, handleEdit, handleDelete}) => {
     // destructuring expense in single variable
     const { id, charge, amount } = expense;
+
     return (
         <li className="item">
             <div className="info">
@@ -13,10 +15,10 @@ const ExpenseItem = ({expense}) => {
             </div>
 
             <div>
-                <button className="edit-button" aria-label="edit-button">
+                <button className="edit-button" aria-label="edit-button" onClick={() => handleEdit(id)}>
                     <MdEdit />
                 </button>
-                <button className="edit-button" aria-label="edit-button">
+                <button className="edit-button" aria-label="edit-button" onClick={ () => handleDelete(id) }>
                     <MdDelete />
                 </button>
             </div>
