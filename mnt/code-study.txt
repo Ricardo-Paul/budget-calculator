@@ -1,0 +1,122 @@
+FORM
+const ExpenseForm = ({props}) => {
+
+}
+
+. All app operations are made in App.js
+Thus, ExpenseForm sends all of its properties ton be manipulated in App.js through destructing...
+
+CRUCIAL
+----------------------------------------------------------------------
+Each form should capture value on submit
+onSubmit={handleSubmit}
+
+
+----------------------------------------------------------------------
+Each form has to keep track of changing value to set the state
+value={amount}
+onChange={handleAmount}
+
+value={charge}
+onChange={handleCharge}
+
+ALL OF THESE PROPERTIES ARE SENT 
+
+const ExpenseForm = ({handleSubmit, amount, handleAmount, charge, handleCharge}) => {
+    return <form>
+}
+
+        HOW DO WE PASS ExpenseForm TO App.js ????
+        1- we import it
+        2- we choose a location to display it by keeping track of all its properties
+                <ExpenseForm
+                    handleSubmit={handleSubmit}
+                    amount={amount}
+                />
+
+
+------------------------------------------------------------
+Once imported we have access to all properties
+so now we can define what handleCharge do each time the input changes
+
+const handleCharge = e => {
+    setCharge(e.target.value)
+}
+
+    WE USE USESTATE TO MANAGE STATE (SO setCharge is our method to set the charge property)
+    const[charge, setCharge] = useState('')
+
+
+
+
+*******************************************************************
+Each time we record an amount and a value after submit, WE BUILD AN OBJECT WITH THEM CALLED NEW EXPENSE 
+
+const newExpense = {id: uuid(), charge, amount}
+BECAUSE WE HAVE A STATE FOR EXPENSES, WE ADD THEM AFTER STORING THE IN THE OBJECT 
+
+const [expenses, setExpenses] = useState([])
+setExpenses([...expenses, newExpense])
+
+
+********** THE INITIAL VALUE FOR expenses IS JUST AN ARRAY OF EXPENSES.
+
+
+
+****************************************************************************
+HOW DO WE DISPLAY THESE ARRAY OF EXPENSES ??? WE SEND THEM TO A LIST
+
+
+<ExpenseList
+expenses={expenses}
+/>
+
+
+ExpenseList ITERATES OVER THE ARRAY AND PASS EACH DOWN TO AN ITEM <ExpenseItem />
+ExpenseItem arranges them on the screen
+
+
+
+
+
+ExpenseList wants to delete expense, how it does it ???
+-------------------------------------------------------------------------------------
+BECAUSE each expense was created with an id in the OBJECT
+const newExpense = { id:uuid(), charge, amount}
+
+ExpenseList can use this id to manipulate the expense each time we press its button "edit"
+onClick={ () => handeleEdit(id) }
+
+
+
+
+
+
+
+NOW WHAT ?
+---------------------------------------------------------------------------------------------
+NOW ExpenseItem should send this method as a property to App.js
+it communicates with App.js through ExpenseList
+
+App.js >    ExpenseList >   ExpenseItem
+
+so it passes handeleEdit up as a property
+const ExpenseItem = ({handeleEdit}) => {
+    return <li> </li>
+}
+
+---------------------------
+ExpenseList receives it as a property too
+
+const ExpenseList = ({handeleEdit}) => {
+    return <ExpenseItem handeleEdit={handeleEdit} />
+}
+
+And because ExpenseList is imported directly in App.js/ so it can define {handeleEdit}
+
+App.js 
+const handeleEdit = (id) => {
+
+}
+
+** We'll get more into the algorithm later
