@@ -1,0 +1,19 @@
+
+.selected {
+    background-color: rgb(245, 206, 80);
+}
+
+.error {
+    color: aliceblue;
+    background-color: rgb(241, 6, 6);
+    animation: fade-in 0.4s;
+}
+
+@keyframes fade-in{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 0;
+    }
+}

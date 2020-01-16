@@ -4,6 +4,7 @@ import ExpenseList from './components/ExpenseList';
 import ExpenseForm from './components/ExpenseForm';
 import Alert from './components/Alert';
 import uuid from 'uuid/v4'
+import {Link} from 'react-router-dom'
 
 const initialExpenses = localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : [];
 
@@ -82,7 +83,7 @@ const handleEdit = (id) => {
 return <> 
     {alert.show && <Alert type={alert.type} text={alert.text} />}
     <Alert />
-    <h1 className="title" > Budget Calculator </h1>
+    <h1 className="title" > PERSONAL FINANCE </h1>
     <main className="App">
       <ExpenseForm
       charge={charge}

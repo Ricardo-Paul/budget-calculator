@@ -1,0 +1,10 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.todoBody {
+    background-color: #83849E;
+    display: flex;
+    justify-content: center;
+}
